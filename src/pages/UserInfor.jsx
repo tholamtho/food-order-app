@@ -5,7 +5,6 @@ import {
   EllipsisOutlined,
   SettingOutlined,
   StarFilled,
-  StarOutlined,
 } from '@ant-design/icons';
 
 export const UserInfor = (info) => {
@@ -39,10 +38,10 @@ export const UserInfor = (info) => {
           />
           <div style={{ marginTop: 16 }}>
             <StarFilled style={{ color: '#FFF700' }} />
-            <StarOutlined style={{ color: '#FFF700' }} />
-            <StarOutlined style={{ color: '#FFF700' }} />
-            <StarOutlined style={{ color: '#FFF700' }} />
-            <StarOutlined style={{ color: '#FFF700' }} />
+            <StarFilled style={{ color: '#FFF700' }} />
+            <StarFilled style={{ color: '#FFF700' }} />
+            <StarFilled style={{ color: '#FFF700' }} />
+            <StarFilled style={{ color: '#FFF700' }} />
           </div>
           <div style={{ marginTop: 16 }}>Thông tin thêm</div>
         </Skeleton>
