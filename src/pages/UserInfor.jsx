@@ -32,10 +32,10 @@ export const UserInfor = (info) => {
         <Skeleton loading={loading} avatar active>
           <Meta
             avatar={
-              <Avatar src='https://scontent-xsp1-1.xx.fbcdn.net/v/t1.18169-9/16388091_158156418014280_8821745201901860383_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=wHF6zzV-OAIAX9aaJVT&_nc_ht=scontent-xsp1-1.xx&oh=00_AfCiQCvyZ3m1z9a9Pfwc-ljcRo7QFhHPDr2P5IswfZ_v5g&oe=650C3BE5' />
+              <Avatar src='https://xsgames.co/randomusers/avatar.php?g=pixel&key=1' />
             }
             title={info.userName ? info.userName : 'Shipper'}
-            description='Đm wibu'
+            description='Nhân viên giao hàng'
           />
           <div style={{ marginTop: 16 }}>
             <StarFilled style={{ color: '#FFF700' }} />
@@ -44,7 +44,7 @@ export const UserInfor = (info) => {
             <StarOutlined style={{ color: '#FFF700' }} />
             <StarOutlined style={{ color: '#FFF700' }} />
           </div>
-          <div style={{ marginTop: 16 }}>Additional Infor</div>
+          <div style={{ marginTop: 16 }}>Thông tin thêm</div>
         </Skeleton>
       </Card>
     </div>
