@@ -6,6 +6,7 @@ import Pizzas from '../pages/Pizzas';
 import PizzaDetails from '../pages/PizzaDetails';
 import Cart from '../pages/Cart';
 import Checkout from '../pages/Checkout';
+import { UserInfor } from '../pages/UserInfor';
 
 const Routers = () => {
   return (
@@ -16,6 +17,7 @@ const Routers = () => {
       <Route path='/pizzas' element={<Pizzas />} />
       <Route path='/cart' element={<Cart />} />
       <Route path='/checkout' element={<Checkout />} />
+      <Route path='/user-infor' element={<UserInfor />} />
       <Route path='/pizzas/:id' element={<PizzaDetails />} />
     </Routes>
   );

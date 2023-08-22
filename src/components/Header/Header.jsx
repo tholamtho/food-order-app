@@ -28,6 +28,10 @@ const nav__links = [
     path: '/contact',
   },
   {
+    display: 'Thông tin người dùng',
+    path: '/user-infor',
+  },
+  {
     display: 'Loggout',
     path: '/login',
     isLoggout: true,
