@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
-import { Container, Row, Col } from "reactstrap";
+import { Container, Row, Col } from 'reactstrap';
 
-import products from "../assets/fake-data/products";
-import ProductCard from "../components/UI/product-card/ProductCard";
-import Helmet from "../components/Helmet/Helmet";
-import ReactPaginate from "react-paginate";
-import "../styles/pagination.css";
+import products from '../assets/fake-data/products';
+import ProductCard from '../components/UI/product-card/ProductCard';
+import Helmet from '../components/Helmet/Helmet';
+import ReactPaginate from 'react-paginate';
+import '../styles/pagination.css';
 
 const Pizzas = () => {
   const [pageNumber, setPageNumber] = useState(0);
@@ -27,28 +27,28 @@ const Pizzas = () => {
   };
 
   return (
-    <Helmet title="All Pizzas">
+    <Helmet title='All Products'>
       <Container>
         <Row>
           {displayPage.map((item) => (
             <Col
-              lg="3"
-              md="4"
-              sm="6"
-              xs="6"
+              lg='3'
+              md='4'
+              sm='6'
+              xs='6'
               key={item.id}
-              className="mb-4 mt-4"
+              className='mb-4 mt-4'
             >
               <ProductCard item={item} />
             </Col>
           ))}
-          <div className="d-flex justify-content-center mt-4 mb-4">
+          <div className='d-flex justify-content-center mt-4 mb-4'>
             <ReactPaginate
               pageCount={pageCount}
               onPageChange={changePage}
-              previousLabel={"Trước"}
-              nextLabel={"Sau"}
-              containerClassName="paginationBttns"
+              previousLabel={'Trước'}
+              nextLabel={'Sau'}
+              containerClassName='paginationBttns'
             />
           </div>
         </Row>
