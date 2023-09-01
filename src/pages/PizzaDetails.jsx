@@ -79,7 +79,6 @@ const PizzaDetails = () => {
       setExtraIngredients((previousState) => [...previousState, ingredient]);
     }
   }
-  console.log(Object.values(ExtraIngredients));
 
   return (
     <Helmet title="Product-details">

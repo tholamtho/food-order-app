@@ -1,0 +1,35 @@
+.login-containers {
+  .image-col {
+    width: 70%;
+  }
+
+  .form-col {
+    padding-left: 24px !important;
+    width: 30%;
+    .input-fields {
+      position: absolute;
+      top: 35%;
+      padding-left: 24px;
+      width: -webkit-fill-available;
+      .label-input {
+        width: 30%;
+      }
+
+      .input-login {
+        width: 70%;
+      }
+
+      h2 {
+        text-align: center;
+        padding-bottom: 16px;
+      }
+
+      button {
+        width: 100%;
+      }
+      .regis-btn {
+        padding-top: 8px;
+      }
+    }
+  }
+}
