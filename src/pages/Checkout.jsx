@@ -1,3 +1,4 @@
+import { MultipleFooter } from '../components/Footer/MultipleFooter';
 import '../styles/checkout.css';
 import { AiFillCheckCircle } from 'react-icons/ai';
 
@@ -37,6 +38,7 @@ const Checkout = () => {
           possible.
         </span>
       </div>
+      <MultipleFooter />
     </>
   );
 };

@@ -7,6 +7,7 @@ import ProductCard from '../components/UI/product-card/ProductCard';
 import Helmet from '../components/Helmet/Helmet';
 import ReactPaginate from 'react-paginate';
 import '../styles/pagination.css';
+import { MultipleFooter } from '../components/Footer/MultipleFooter';
 
 const Pizzas = () => {
   const [pageNumber, setPageNumber] = useState(0);
@@ -53,6 +54,7 @@ const Pizzas = () => {
           </div>
         </Row>
       </Container>
+      <MultipleFooter />
     </Helmet>
   );
 };
