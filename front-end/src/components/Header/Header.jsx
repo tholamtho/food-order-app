@@ -29,7 +29,7 @@ const nav__links = [
   },
   {
     display: 'Thông tin người dùng',
-    path: '/user-infor',
+    path: `/user-infor/${localStorage.getItem('id') ?? 1}`,
   },
   {
     display: 'Loggout',

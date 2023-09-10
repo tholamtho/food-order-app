@@ -1,0 +1,30 @@
+.user-infor-container {
+  padding-top: 32px;
+  .user-details {
+    width: 40%;
+    .user-name {
+      font-size: 24px;
+    }
+  }
+
+  .user-actions {
+    width: 20%;
+    .rated-user {
+      padding: 24px 0 0 76px;
+    }
+  }
+  .edit-inf-btn-container {
+    padding-top: 24px;
+    .edit-inf-btn {
+      width: 100%;
+    }
+  }
+}
+.change-infor-modal {
+  .change-infor-inputs {
+    padding-top: 16px !important;
+  }
+  button {
+    width: 70%;
+  }
+}

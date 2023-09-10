@@ -1,7 +1,7 @@
-import { Button, Form, Modal, Input } from 'antd';
+import { Button, Form, Modal, Input, Row, Col } from 'antd';
 import { useState } from 'react';
+import './Login.scss';
 export const Login = () => {
-  const [isOpenLogin, setIsOpenLogin] = useState(false);
   const [isOpenRegister, setOpenRegister] = useState(false);
   const [loginFormInstance] = Form.useForm();
   const [registerFormInstance] = Form.useForm();
@@ -24,7 +24,6 @@ export const Login = () => {
         alert('User not exits');
       }
     }
-    setIsOpenLogin((current) => !current);
   };
   const handleRegisterSubmit = () => {
     if (
@@ -38,14 +37,6 @@ export const Login = () => {
     const currentAccountList = localStorage.getItem('accountList');
     console.log(currentAccountList, typeof currentAccountList);
     if (currentAccountList && Array.isArray(JSON.parse(currentAccountList))) {
-      const arr = [
-        ...JSON.parse(currentAccountList),
-        {
-          userName: registerFormInstance.getFieldValue('register-userName'),
-          password: registerFormInstance.getFieldValue('register-pwd'),
-        },
-      ];
-      console.log(arr);
       localStorage.setItem(
         'accountList',
         JSON.stringify([
@@ -60,47 +51,73 @@ export const Login = () => {
     setOpenRegister((current) => !current);
   };
   return (
-    <div>
-      <div>Login</div>
-      <Button onClick={() => setIsOpenLogin((current) => !current)}>
-        Login
-      </Button>
-      <Button onClick={() => setOpenRegister((current) => !current)}>
-        Register
-      </Button>
-      <Modal
-        open={isOpenLogin}
-        title={'Login'}
-        onCancel={() => setIsOpenLogin((current) => !current)}
-        onOk={handleLoginSubmit}
-      >
-        <Form form={loginFormInstance}>
-          <Form.Item name={'login-userName'} label={'UserName'}>
-            <Input />
-          </Form.Item>
-          <Form.Item name={'login-pwd'} label={'Password'}>
-            <Input type='password' />
-          </Form.Item>
-        </Form>
-      </Modal>
-      <Modal
-        open={isOpenRegister}
-        title={'Login'}
-        onCancel={() => setOpenRegister((current) => !current)}
-        onOk={handleRegisterSubmit}
-      >
-        <Form form={registerFormInstance}>
-          <Form.Item name={'register-userName'} label={'UserName'}>
-            <Input />
-          </Form.Item>
-          <Form.Item name={'register-pwd'} label={'Password'}>
-            <Input type='password' />
-          </Form.Item>
-          <Form.Item name={'register-confirm-pwd'} label={'Confirm Password'}>
-            <Input type='password' />
-          </Form.Item>
-        </Form>
-      </Modal>
+    <div className='login-containers'>
+      <Row gutter={[8, 8]}>
+        <Col className='image-col'>
+          <img
+            src='https://international.fpt.edu.vn/web/image/3822/gw%209.jpg?access_token=9dda13c8-8f20-468a-b97e-8b520d947675'
+            width={window.innerWidth * 0.7}
+            height={window.innerHeight}
+            alt='school-img'
+          ></img>
+        </Col>
+        <Col className='form-col'>
+          <div className='input-fields'>
+            <h2>Đăng nhập</h2>
+            <Form form={loginFormInstance}>
+              <Row>
+                <Col className='label-input'>
+                  <span>Tên đăng nhập</span>
+                </Col>
+                <Col className='input-login'>
+                  <Form.Item name={'login-userName'}>
+                    <Input />
+                  </Form.Item>
+                </Col>
+              </Row>
+              <Row>
+                <Col className='label-input'>
+                  <span>Mật khẩu</span>
+                </Col>
+                <Col className='input-login'>
+                  <Form.Item name={'login-pwd'}>
+                    <Input type='password' />
+                  </Form.Item>
+                </Col>
+              </Row>
+              <Row>
+                <Button onClick={handleLoginSubmit} type='primary'>
+                  Đăng nhập
+                </Button>
+              </Row>
+              <Row className='regis-btn'>
+                <Button onClick={() => setOpenRegister((current) => !current)}>
+                  Chưa có account? Đăng kí
+                </Button>
+              </Row>
+            </Form>
+          </div>
+        </Col>
+        <Modal
+          open={isOpenRegister}
+          title={'Login'}
+          onCancel={() => setOpenRegister((current) => !current)}
+          onOk={handleRegisterSubmit}
+          centered
+        >
+          <Form form={registerFormInstance}>
+            <Form.Item name={'register-userName'} label={'UserName'}>
+              <Input />
+            </Form.Item>
+            <Form.Item name={'register-pwd'} label={'Password'}>
+              <Input type='password' />
+            </Form.Item>
+            <Form.Item name={'register-confirm-pwd'} label={'Confirm Password'}>
+              <Input type='password' />
+            </Form.Item>
+          </Form>
+        </Modal>
+      </Row>
     </div>
   );
 };
