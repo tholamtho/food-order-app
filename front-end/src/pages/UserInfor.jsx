@@ -152,7 +152,7 @@ export const UserInfor = (info) => {
               />
             </Col>
             <Col>
-              <a>Change your avatar</a>
+              <div href='#'>Change your avatar</div>
             </Col>
           </Row>
           <Row className='change-infor-inputs'>
