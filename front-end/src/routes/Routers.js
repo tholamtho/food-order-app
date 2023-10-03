@@ -7,6 +7,7 @@ import PizzaDetails from '../pages/PizzaDetails';
 import Cart from '../pages/Cart';
 import Checkout from '../pages/Checkout';
 import { UserInfor } from '../pages/UserInfor';
+import { GradingOrder } from '../pages/Grading';
 
 export const hideFooterPage = {
   LOGIN: 'login',
@@ -20,6 +21,7 @@ export const APP_ROUTE = {
   CHECKOUT: '/checkout',
   INFO: `/${hideFooterPage.INFOR}/:id`,
   PIZZA_DETAILS: '/pizzas/:id',
+  GRADING: '/grading/:id',
 };
 
 const Routers = () => {
@@ -33,6 +35,7 @@ const Routers = () => {
       <Route path={APP_ROUTE.CHECKOUT} element={<Checkout />} />
       <Route path={APP_ROUTE.INFO} element={<UserInfor />} />
       <Route path={APP_ROUTE.PIZZA_DETAILS} element={<PizzaDetails />} />
+      <Route path={APP_ROUTE.GRADING} element={<GradingOrder />} />
     </Routes>
   );
 };

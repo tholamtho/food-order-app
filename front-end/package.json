@@ -23,6 +23,7 @@
     "redux-logger": "^3.0.6",
     "remixicon": "^2.5.0",
     "sass": "^1.66.1",
+    "uuid": "^9.0.1",
     "web-vitals": "^1.1.2"
   },
   "scripts": {

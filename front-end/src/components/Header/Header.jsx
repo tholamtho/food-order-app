@@ -1,5 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { v4 as uuidv4 } from 'uuid';
 
 import { Container } from 'reactstrap';
 import logo from '../../assets/images/res-logo.png';
@@ -30,6 +31,10 @@ const nav__links = [
   {
     display: 'Thông tin người dùng',
     path: `/user-infor/${localStorage.getItem('id') ?? 1}`,
+  },
+  {
+    display: 'Đánh giá',
+    path: `/grading/${localStorage.getItem('orderId') ?? uuidv4()}`,
   },
   {
     display: 'Loggout',
