@@ -1,6 +1,7 @@
 {
   "name": "food-order-app",
   "version": "0.1.0",
+  "proxy":"http://localhost:8081/",
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^1.6.2",

@@ -1,6 +1,7 @@
 import { Button, Form, Modal, Input, Row, Col } from 'antd';
 import { useState } from 'react';
 import './Login.scss';
+import { registerAccount } from '../api/login';
 export const Login = () => {
   const [isOpenRegister, setOpenRegister] = useState(false);
   const [loginFormInstance] = Form.useForm();
@@ -48,6 +49,13 @@ export const Login = () => {
         ])
       );
     }
+    registerAccount({
+      username: registerFormInstance.getFieldValue('register-userName'),
+      password: registerFormInstance.getFieldValue('register-pwd'),
+      email: registerFormInstance.getFieldValue('register-email'),
+      phoneNo: registerFormInstance.getFieldValue('register-phoneNo'),
+      permission: 2, //Default is user
+    });
     setOpenRegister((current) => !current);
   };
   return (
@@ -107,6 +115,12 @@ export const Login = () => {
         >
           <Form form={registerFormInstance}>
             <Form.Item name={'register-userName'} label={'UserName'}>
+              <Input />
+            </Form.Item>
+            <Form.Item name={'register-email'} label={'Email'}>
+              <Input />
+            </Form.Item>
+            <Form.Item name={'register-phoneNo'} label={'Phone Number'}>
               <Input />
             </Form.Item>
             <Form.Item name={'register-pwd'} label={'Password'}>
