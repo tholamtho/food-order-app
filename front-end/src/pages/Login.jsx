@@ -1,32 +1,28 @@
 import { Button, Form, Modal, Input, Row, Col } from 'antd';
 import { useState } from 'react';
 import './Login.scss';
-import { registerAccount } from '../api/login';
+import { loginWithAccount, registerAccount } from '../api/login';
 export const Login = () => {
   const [isOpenRegister, setOpenRegister] = useState(false);
   const [loginFormInstance] = Form.useForm();
   const [registerFormInstance] = Form.useForm();
-  const accountList = localStorage.getItem('accountList');
-  const handleLoginSubmit = () => {
-    if (accountList) {
-      const isExisted = JSON.parse(accountList ?? '').find(
-        (item) =>
-          item.userName === loginFormInstance.getFieldValue('login-userName') &&
-          item.password === loginFormInstance.getFieldValue('login-pwd')
+  const handleLoginSubmit = async () => {
+    const loginData = await loginWithAccount({
+      username: loginFormInstance.getFieldValue('login-userName'),
+      password: loginFormInstance.getFieldValue('login-pwd'),
+    });
+    if (loginData.username && loginData.permission !== -1) {
+      localStorage.setItem('isLogined', 'true');
+      localStorage.setItem(
+        'userName',
+        loginFormInstance.getFieldValue('login-userName')
       );
-      if (isExisted) {
-        localStorage.setItem('isLogined', 'true');
-        localStorage.setItem(
-          'userName',
-          loginFormInstance.getFieldValue('login-userName')
-        );
-        window.location.pathname = '/home';
-      } else {
-        alert('User not exits');
-      }
+      window.location.pathname = '/home';
+    } else {
+      alert('Thông tin không đúng hoặc sai mật khẩu. Vui lòng thử lại');
     }
   };
-  const handleRegisterSubmit = () => {
+  const handleRegisterSubmit = async () => {
     if (
       registerFormInstance.getFieldValue('register-pwd') !==
       registerFormInstance.getFieldValue('register-confirm-pwd')
@@ -35,27 +31,18 @@ export const Login = () => {
       setOpenRegister((current) => !current);
       return;
     }
-    const currentAccountList = localStorage.getItem('accountList');
-    console.log(currentAccountList, typeof currentAccountList);
-    if (currentAccountList && Array.isArray(JSON.parse(currentAccountList))) {
-      localStorage.setItem(
-        'accountList',
-        JSON.stringify([
-          ...JSON.parse(currentAccountList),
-          {
-            userName: registerFormInstance.getFieldValue('register-userName'),
-            password: registerFormInstance.getFieldValue('register-pwd'),
-          },
-        ])
-      );
-    }
-    registerAccount({
+
+    const registerStatus = await registerAccount({
       username: registerFormInstance.getFieldValue('register-userName'),
       password: registerFormInstance.getFieldValue('register-pwd'),
       email: registerFormInstance.getFieldValue('register-email'),
       phoneNo: registerFormInstance.getFieldValue('register-phoneNo'),
       permission: 2, //Default is user
     });
+    if (!registerStatus) {
+      alert('Tài khoản đã được tạo!');
+      return;
+    }
     setOpenRegister((current) => !current);
   };
   return (
