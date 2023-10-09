@@ -1,6 +1,5 @@
 import React, { useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { v4 as uuidv4 } from 'uuid';
 
 import { Container } from 'reactstrap';
 import logo from '../../assets/images/res-logo.png';
@@ -10,6 +9,14 @@ import { useSelector, useDispatch } from 'react-redux';
 import { cartUiActions } from '../../store/shopping-cart/cartUiSlice';
 
 import '../../styles/header.css';
+
+export const USER_ROLE = {
+  ADMIN: 1,
+  CUSTOMER: 2,
+  SHIPPER: 3,
+};
+
+const USER_DETAILS = JSON.parse(localStorage.getItem('user_info'));
 
 const nav__links = [
   {
@@ -23,6 +30,8 @@ const nav__links = [
   {
     display: 'Giỏ hàng',
     path: '/cart',
+    isAdminHidden: true,
+    isShipperHidden: true,
   },
   {
     display: 'Liên hệ',
@@ -30,18 +39,35 @@ const nav__links = [
   },
   {
     display: 'Thông tin người dùng',
-    path: `/user-infor/${localStorage.getItem('id') ?? 1}`,
+    path: `/user-infor/${USER_DETAILS?.username ?? 1}`,
   },
   {
     display: 'Đánh giá',
-    path: `/grading/${localStorage.getItem('orderId') ?? uuidv4()}`,
+    path: `/grading/${USER_DETAILS?.username ?? ''}`,
+    isAdminHidden: true,
   },
   {
     display: 'Loggout',
     path: '/login',
     isLoggout: true,
   },
-];
+].filter((item) => {
+  if (
+    USER_DETAILS &&
+    USER_DETAILS.permission === USER_ROLE.ADMIN &&
+    item.isAdminHidden
+  ) {
+    return false;
+  }
+  if (
+    USER_DETAILS &&
+    USER_DETAILS.permission === USER_ROLE.SHIPPER &&
+    item.isShipperHidden
+  ) {
+    return false;
+  }
+  return true;
+});
 
 const Header = () => {
   const menuRef = useRef(null);

@@ -8,10 +8,26 @@ import { Container, Row, Col } from 'reactstrap';
 import { cartActions } from '../store/shopping-cart/cartSlice';
 import { Link } from 'react-router-dom';
 import { MultipleFooter } from '../components/Footer/MultipleFooter';
+import { addOrderDetail } from '../api/orderDetail';
+import { v4 as uuidv4 } from 'uuid';
+import { ORDER_DETAIL_STATUS } from '../components/UI/cart/Carts';
 
 const Cart = () => {
   const cartItems = useSelector((state) => state.cart.cartItems);
   const totalAmount = useSelector((state) => state.cart.totalAmount);
+  const USER_DETAILS = JSON.parse(localStorage.getItem('user_info'));
+
+  const handleCheckout = async () => {
+    await addOrderDetail({
+      customersName: USER_DETAILS.username,
+      shipperName: '',
+      orderID: uuidv4(),
+      orderStatus: ORDER_DETAIL_STATUS.Pending,
+      orderRating: '',
+      orderComment: null,
+    });
+  };
+
   return (
     <Helmet title='Cart'>
       <CommonSection title='Your Cart' />
@@ -44,7 +60,7 @@ const Cart = () => {
                   <button className='addTOCart__btn me-4'>
                     <Link to='/pizzas'>Tiếp tục mua sắm</Link>
                   </button>
-                  <button className='addTOCart__btn'>
+                  <button className='addTOCart__btn' onClick={handleCheckout}>
                     <Link to='/checkout'>Thanh toán</Link>
                   </button>
                 </div>

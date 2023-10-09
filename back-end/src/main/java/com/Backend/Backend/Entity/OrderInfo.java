@@ -15,19 +15,19 @@ public class OrderInfo {
     private int id;
 
     @Column(name="customer_name")
-    private String CustomersName;
+    private String customersName;
 
     @Column(name="shipper_name")
-    private String ShipperName;
+    private String shipperName;
 
     @Column(name="order_id")
-    private String OrderID;
+    private String orderID;
 
+    @Column(name="order_status")
+    private String orderStatus;
     @Column(name="order_rating")
-    private int OrderRating;
+    private int oderRating;
 
     @Column(name="order_comment")
-    private String OrderComment;
-    @Column(name="order_detail")
-    private String OrderDetail;
+    private String orderComment;
 }

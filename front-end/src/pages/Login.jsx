@@ -1,4 +1,4 @@
-import { Button, Form, Modal, Input, Row, Col } from 'antd';
+import { Button, Form, Modal, Input, Row, Col, Select } from 'antd';
 import { useState } from 'react';
 import './Login.scss';
 import { loginWithAccount, registerAccount } from '../api/login';
@@ -6,6 +6,12 @@ export const Login = () => {
   const [isOpenRegister, setOpenRegister] = useState(false);
   const [loginFormInstance] = Form.useForm();
   const [registerFormInstance] = Form.useForm();
+
+  const userRoleOptions = [
+    { label: 'Khách hàng', value: 2 },
+    { label: 'Nhân viên giao hàng', value: 3 },
+  ];
+
   const handleLoginSubmit = async () => {
     const loginData = await loginWithAccount({
       username: loginFormInstance.getFieldValue('login-userName'),
@@ -38,7 +44,8 @@ export const Login = () => {
       password: registerFormInstance.getFieldValue('register-pwd'),
       email: registerFormInstance.getFieldValue('register-email'),
       phoneNo: registerFormInstance.getFieldValue('register-phoneNo'),
-      permission: 2, //Default is user
+      permission:
+        Number(registerFormInstance.getFieldValue('role-select')) ?? 2,
     });
     if (!registerStatus) {
       alert('Tài khoản đã được tạo!');
@@ -116,6 +123,9 @@ export const Login = () => {
             </Form.Item>
             <Form.Item name={'register-confirm-pwd'} label={'Confirm Password'}>
               <Input type='password' />
+            </Form.Item>
+            <Form.Item name={'role-select'} label={'Vai trò'}>
+              <Select options={userRoleOptions} />
             </Form.Item>
           </Form>
         </Modal>
