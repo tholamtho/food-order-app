@@ -17,6 +17,7 @@ export const Login = () => {
         'userName',
         loginFormInstance.getFieldValue('login-userName')
       );
+      localStorage.setItem('user_info', JSON.stringify(loginData));
       window.location.pathname = '/home';
     } else {
       alert('Thông tin không đúng hoặc sai mật khẩu. Vui lòng thử lại');

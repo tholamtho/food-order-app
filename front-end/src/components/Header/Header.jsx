@@ -105,6 +105,7 @@ const Header = () => {
                     toggleMenu();
                     if (item.isLoggout) {
                       localStorage.removeItem('isLogined');
+                      localStorage.removeItem('user_info');
                       window.location.pathname = '/login';
                     }
                   }}
