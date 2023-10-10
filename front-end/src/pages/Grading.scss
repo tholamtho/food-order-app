@@ -1,35 +1,32 @@
-.rating-container {
-  padding-top: 36px;
-  .order-id-detail {
-    font-size: 24px;
+.order-id-detail {
+  font-size: 24px;
+  margin: auto;
+  .order-number {
     margin: auto;
-    .order-number {
-      margin: auto;
-    }
   }
-  .rating-header {
+}
+.rating-header {
+  width: 100%;
+  .header-blank-col-1 {
+    width: 30%;
+  }
+}
+.comment-row {
+  padding-top: 16px;
+  .comment-blank-col {
+    width: 30%;
+  }
+  .comment-input-col {
     width: 100%;
-    .header-blank-col-1 {
-      width: 44%;
-    }
   }
-  .comment-row {
+  .comment-input {
+    height: 140px;
+  }
+  .rating-btn-container {
     padding-top: 16px;
-    .comment-blank-col {
-      width: 30%;
-    }
-    .comment-input-col {
-      width: 40%;
-    }
-    .comment-input {
-      height: 140px;
-    }
-    .rating-btn-container {
-      padding-top: 16px;
-      .rating-btn {
-        margin: auto;
-        width: 20%;
-      }
+    .rating-btn {
+      margin: auto;
+      width: 20%;
     }
   }
 }
