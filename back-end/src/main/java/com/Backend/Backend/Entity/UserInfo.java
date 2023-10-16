@@ -28,4 +28,7 @@ public class UserInfo {
 
     @Column(name="phone_no")
     private String phoneNo;
+
+    @Column(name="address")
+    private String userAddress;
 }

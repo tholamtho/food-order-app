@@ -17,6 +17,12 @@ public class OrderInfo {
     @Column(name="customer_name")
     private String customersName;
 
+    @Column(name="customer_address")
+    private String customersAddress;
+
+    @Column(name="customer_phone")
+    private String customersPhoneNo;
+
     @Column(name="shipper_name")
     private String shipperName;
 
@@ -25,6 +31,7 @@ public class OrderInfo {
 
     @Column(name="order_status")
     private String orderStatus;
+
     @Column(name="order_rating")
     private int oderRating;
 
