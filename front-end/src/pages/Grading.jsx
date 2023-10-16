@@ -83,6 +83,16 @@ export const GradingOrder = () => {
       key: 'customersName',
     },
     {
+      title: 'Địa chỉ',
+      dataIndex: 'customersAddress',
+      key: 'customersAddress',
+    },
+    {
+      title: 'Số điện thoại',
+      dataIndex: 'customersPhoneNo',
+      key: 'customersPhoneNo',
+    },
+    {
       title: 'Mã vận đơn',
       dataIndex: 'orderID',
       key: 'orderID',

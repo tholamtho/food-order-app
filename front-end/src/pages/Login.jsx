@@ -44,6 +44,7 @@ export const Login = () => {
       password: registerFormInstance.getFieldValue('register-pwd'),
       email: registerFormInstance.getFieldValue('register-email'),
       phoneNo: registerFormInstance.getFieldValue('register-phoneNo'),
+      userAddress: registerFormInstance.getFieldValue('user-address'),
       permission:
         Number(registerFormInstance.getFieldValue('role-select')) ?? 2,
     });
@@ -123,6 +124,9 @@ export const Login = () => {
             </Form.Item>
             <Form.Item name={'register-confirm-pwd'} label={'Confirm Password'}>
               <Input type='password' />
+            </Form.Item>
+            <Form.Item name={'user-address'} label={'Address'}>
+              <Input />
             </Form.Item>
             <Form.Item name={'role-select'} label={'Vai trò'}>
               <Select options={userRoleOptions} />
