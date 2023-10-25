@@ -20,8 +20,8 @@ const Cart = () => {
   const handleCheckout = async () => {
     await addOrderDetail({
       customersName: USER_DETAILS.username,
-      customersAddress: USER_DETAILS.phoneNo,
-      customersPhoneNo: USER_DETAILS.userAddress,
+      customersAddress: USER_DETAILS.userAddress,
+      customersPhoneNo: USER_DETAILS.phoneNo,
       shipperName: '',
       orderID: uuidv4(),
       orderStatus: ORDER_DETAIL_STATUS.Pending,
