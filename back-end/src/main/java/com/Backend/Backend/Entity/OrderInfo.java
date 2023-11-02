@@ -43,4 +43,10 @@ public class OrderInfo {
 
     @Column(name="deliver_time")
     private String deliverTime;
+
+    @Column(name="total_cost")
+    private int totalCost;
+
+    @Column(name="is_graded")
+    private boolean isGraded;
 }

@@ -21,3 +21,8 @@ export const changeOrderDetails = (payload) =>
   request.post('/update-orders', { ...payload }).then((data) => {
     return data;
   });
+
+export const getListOrder = () =>
+  request.get('/get-orders').then((data) => {
+    return data;
+  });

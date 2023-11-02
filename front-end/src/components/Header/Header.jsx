@@ -42,8 +42,9 @@ const nav__links = [
     path: `/user-infor/${USER_DETAILS?.username ?? 1}`,
   },
   {
-    display: 'Đánh giá',
+    display: 'Danh sách đơn hàng',
     path: `/grading/${USER_DETAILS?.username ?? ''}`,
+    isBannedAvoid: true,
     isAdminHidden: true,
   },
   {
@@ -140,6 +141,16 @@ const Header = () => {
                       localStorage.removeItem('isLogined');
                       localStorage.removeItem('user_info');
                       window.location.pathname = '/login';
+                    }
+                    if (
+                      USER_DETAILS.permission === USER_ROLE.SHIPPER &&
+                      USER_DETAILS.banned &&
+                      item.isBannedAvoid
+                    ) {
+                      alert(
+                        'Bạn đã bị cấm nhận đơn hàng. Vui lòng liên hệ với người quản lý để xử lý. Trân trọng!'
+                      );
+                      window.location.pathname = '/home';
                     }
                   }}
                 >

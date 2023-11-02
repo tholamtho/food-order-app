@@ -28,7 +28,9 @@ const Cart = () => {
       orderRating: '',
       orderComment: null,
       orderTime: new Date().toLocaleString(),
+      totalCost: Number(totalAmount),
     });
+    window.location.reload();
   };
 
   return (

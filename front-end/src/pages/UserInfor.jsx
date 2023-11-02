@@ -8,12 +8,16 @@ import {
   Modal,
   Form,
   Input,
+  Table,
 } from 'antd';
 import React, { useEffect, useState, useRef } from 'react';
 import { isEmpty } from 'lodash';
 import { EditOutlined, StarFilled } from '@ant-design/icons';
 import './UserInfor.scss';
 import { changeUserDetails } from '../api/userDetail';
+import { USER_ROLE } from '../components/Header/Header';
+import { getAllCustomerOrderDetail } from '../api/orderDetail';
+import { useParams } from 'react-router-dom';
 
 const changeInforInputName = {
   name: 'name',
@@ -34,9 +38,11 @@ const secondColInput = [
 
 export const UserInfor = (info) => {
   const { Meta } = Card;
+  const { id } = useParams();
   const [loading, setLoading] = useState(true);
   const [isOpenEditModal, setIsOpenEditModal] = useState(false);
   const USER_DETAILS = JSON.parse(localStorage.getItem('user_info'));
+  const [currentOrders, setCurrentOrders] = useState([]);
 
   const [userFormInstance] = Form.useForm();
 
@@ -92,6 +98,15 @@ export const UserInfor = (info) => {
     });
   };
 
+  useEffect(() => {
+    if (USER_DETAILS.permission === USER_ROLE.CUSTOMER) {
+      getAllCustomerOrderDetail(id).then((data) => {
+        setCurrentOrders(data.data.filter((item) => item.graded));
+      });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const getUserStarRated = () => {
     return Array(info.rated ? info.rated : 5).fill(
       <StarFilled style={{ color: '#FFF700', width: 24 }} />
@@ -119,6 +134,44 @@ export const UserInfor = (info) => {
       </div>
     );
   };
+
+  const customersColumns = [
+    {
+      title: 'Tên người giao hàng',
+      dataIndex: 'shipperName',
+      key: 'shipperName',
+    },
+    {
+      title: 'Mã vận đơn',
+      dataIndex: 'orderID',
+      key: 'orderID',
+    },
+    {
+      title: 'Trạng thái giao hàng',
+      key: 'Status',
+      dataIndex: 'orderStatus',
+    },
+    {
+      title: 'Đánh giá',
+      key: 'oderRating',
+      dataIndex: 'oderRating',
+    },
+    {
+      title: 'Thời gian nhận đơn',
+      dataIndex: 'orderTime',
+      key: 'orderTime',
+    },
+    {
+      title: 'Thời gian giao hàng',
+      dataIndex: 'deliverTime',
+      key: 'deliverTime',
+    },
+    {
+      title: 'Tổng giá trị',
+      dataIndex: 'totalCost',
+      key: 'totalCost',
+    },
+  ];
 
   return (
     <div className='user-infor-container'>
@@ -198,6 +251,9 @@ export const UserInfor = (info) => {
           </Row>
         </div>
       </Modal>
+      {USER_DETAILS.permission === USER_ROLE.CUSTOMER && (
+        <Table dataSource={currentOrders} columns={customersColumns} />
+      )}
     </div>
   );
 };

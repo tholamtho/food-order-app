@@ -3,6 +3,7 @@ package com.Backend.Backend.Controller;
 import com.Backend.Backend.Entity.OrderInfo;
 import com.Backend.Backend.Service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,7 +25,6 @@ public class OrderController {
     @PostMapping("/get-orders")
     public List<OrderInfo> getDetails(@RequestBody OrderInfo orderInfo) {
         List<OrderInfo> orderList = orderService.getAllOrderInfo();
-        System.out.println(orderInfo);
         return orderList.stream().filter(item -> orderInfo.getCustomersName().equals(item.getCustomersName()))
                 .collect(Collectors.toList());
     }
@@ -40,5 +40,10 @@ public class OrderController {
     @PostMapping("/update-orders")
     public OrderInfo updateOrdersDetails(@RequestBody OrderInfo orderInfo) {
         return orderService.updateOrderInfo(orderInfo);
+    }
+
+    @GetMapping("/get-orders")
+    public List<OrderInfo> getAllOrder() {
+        return orderService.getAllOrderInfo();
     }
 }

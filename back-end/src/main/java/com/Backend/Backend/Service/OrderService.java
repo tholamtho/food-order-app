@@ -24,6 +24,7 @@ public class OrderService {
     public OrderInfo updateOrderInfo(OrderInfo orderInfo) {
         OrderInfo updatedData = orderRepo.findById(orderInfo.getId()).orElse(null);
         if (updatedData != null) {
+            System.out.println(orderInfo.isGraded());
             updatedData.setCustomersName(orderInfo.getCustomersName());
             updatedData.setShipperName(orderInfo.getShipperName());
             updatedData.setOrderID(orderInfo.getOrderID());
@@ -32,6 +33,8 @@ public class OrderService {
             updatedData.setOrderComment(orderInfo.getOrderComment());
             updatedData.setDeliverTime(orderInfo.getDeliverTime());
             updatedData.setOrderTime(orderInfo.getOrderTime());
+            updatedData.setGraded(orderInfo.isGraded());
+            updatedData.setTotalCost(orderInfo.getTotalCost());
             orderRepo.save(updatedData);
             return updatedData;
         }

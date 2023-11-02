@@ -8,6 +8,7 @@ import Cart from '../pages/Cart';
 import Checkout from '../pages/Checkout';
 import { UserInfor } from '../pages/UserInfor';
 import { GradingOrder } from '../pages/Grading';
+import { UserManageMent } from '../pages/UserManageMent';
 
 export const hideFooterPage = {
   LOGIN: 'login',
@@ -22,6 +23,7 @@ export const APP_ROUTE = {
   INFO: `/${hideFooterPage.INFOR}/:id`,
   PIZZA_DETAILS: '/pizzas/:id',
   GRADING: '/grading/:id',
+  USER_MANAGEMENT: '/user-management',
 };
 
 const Routers = () => {
@@ -36,6 +38,7 @@ const Routers = () => {
       <Route path={APP_ROUTE.INFO} element={<UserInfor />} />
       <Route path={APP_ROUTE.PIZZA_DETAILS} element={<PizzaDetails />} />
       <Route path={APP_ROUTE.GRADING} element={<GradingOrder />} />
+      <Route path={APP_ROUTE.USER_MANAGEMENT} element={<UserManageMent />} />
     </Routes>
   );
 };

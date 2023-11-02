@@ -3,6 +3,7 @@ package com.Backend.Backend.Controller;
 import com.Backend.Backend.Entity.UserInfo;
 import com.Backend.Backend.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,6 +33,11 @@ public class UserController {
         List<UserInfo> userList = userService.getAllUserInfo();
         return userList.stream().anyMatch(
                 o -> userInfo.getUsername().equals(o.getUsername()) && userInfo.getPassword().equals(o.getPassword()));
+    }
+
+    @GetMapping("/list-user")
+    private List<UserInfo> getAllUserInfo() {
+        return userService.getAllUserInfo();
     }
 
     private List<UserInfo> getCurrentUser(@RequestBody UserInfo userInfo) {

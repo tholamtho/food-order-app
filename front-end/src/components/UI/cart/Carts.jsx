@@ -34,9 +34,11 @@ const Carts = () => {
       orderRating: '',
       orderComment: null,
       orderTime: new Date().toLocaleString(),
+      totalCost: Number(totalAmount),
     });
 
     dispatch(cartUiActions.toggle());
+    window.location.reload();
   };
   return (
     <div className='cart__container' onClick={toggleCart}>

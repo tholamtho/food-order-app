@@ -30,7 +30,7 @@ export const GradingOrder = () => {
   useEffect(() => {
     if (USER_DETAILS.permission === USER_ROLE.CUSTOMER) {
       getAllCustomerOrderDetail(id).then((data) => {
-        setCurrentOrders(data.data);
+        setCurrentOrders(data.data.filter((item) => !item.graded));
       });
     } else {
       getAllShipperOrderDetail(id).then((data) => {
@@ -46,15 +46,16 @@ export const GradingOrder = () => {
       ...ratingOrder,
       orderComment: currentComment.current,
       oderRating: Math.round(currentRate),
+      graded: true,
     });
     setRating(0);
     setRatingOrder({});
     currentComment.current = '';
     alert('Đã Đánh giá đơn hàng thành công. Cảm ơn quý khách');
+    window.location.reload();
   };
 
   const handleShowOrdersComment = (record) => {
-    console.log(record);
     return (
       <div>
         <div>Người đánh giá: {record.customersName}</div>
@@ -75,6 +76,7 @@ export const GradingOrder = () => {
       orderStatus: ORDER_DETAIL_STATUS.Complete,
       deliverTime: new Date().toLocaleString(),
     });
+    window.location.reload();
   };
 
   const shipperColumns = [

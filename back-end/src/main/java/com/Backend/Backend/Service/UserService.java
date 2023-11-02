@@ -26,6 +26,7 @@ public class UserService {
             targetUser.setEmail(userInfo.getEmail());
             targetUser.setPhoneNo(userInfo.getPhoneNo());
             targetUser.setUserAddress(userInfo.getUserAddress());
+            targetUser.setBanned(userInfo.isBanned());
             userRepo.save(targetUser);
             return targetUser;
         }
