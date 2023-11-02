@@ -73,7 +73,7 @@ export const GradingOrder = () => {
       ...record,
       shipperName: USER_DETAILS.username,
       orderStatus: ORDER_DETAIL_STATUS.Complete,
-      deliverTime: new Date().toUTCString(),
+      deliverTime: new Date().toLocaleString(),
     });
   };
 
