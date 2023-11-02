@@ -37,4 +37,10 @@ public class OrderInfo {
 
     @Column(name="order_comment")
     private String orderComment;
+
+    @Column(name="order_time")
+    private String orderTime;
+
+    @Column(name="deliver_time")
+    private String deliverTime;
 }

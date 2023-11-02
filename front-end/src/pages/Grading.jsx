@@ -73,6 +73,7 @@ export const GradingOrder = () => {
       ...record,
       shipperName: USER_DETAILS.username,
       orderStatus: ORDER_DETAIL_STATUS.Complete,
+      deliverTime: new Date().toUTCString(),
     });
   };
 
@@ -109,6 +110,16 @@ export const GradingOrder = () => {
           );
         }
       },
+    },
+    {
+      title: 'Thời gian nhận đơn',
+      dataIndex: 'orderTime',
+      key: 'orderTime',
+    },
+    {
+      title: 'Thời gian giao hàng',
+      dataIndex: 'deliverTime',
+      key: 'deliverTime',
     },
   ];
 
@@ -153,6 +164,16 @@ export const GradingOrder = () => {
           );
         }
       },
+    },
+    {
+      title: 'Thời gian nhận đơn',
+      dataIndex: 'orderTime',
+      key: 'orderTime',
+    },
+    {
+      title: 'Thời gian giao hàng',
+      dataIndex: 'deliverTime',
+      key: 'deliverTime',
     },
   ];
   return (

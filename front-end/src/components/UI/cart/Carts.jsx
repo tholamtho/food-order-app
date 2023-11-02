@@ -33,6 +33,7 @@ const Carts = () => {
       orderStatus: ORDER_DETAIL_STATUS.Pending,
       orderRating: '',
       orderComment: null,
+      orderTime: new Date().toUTCString(),
     });
 
     dispatch(cartUiActions.toggle());

@@ -30,6 +30,8 @@ public class OrderService {
             updatedData.setOrderStatus(orderInfo.getOrderStatus());
             updatedData.setOderRating(orderInfo.getOderRating());
             updatedData.setOrderComment(orderInfo.getOrderComment());
+            updatedData.setDeliverTime(orderInfo.getDeliverTime());
+            updatedData.setOrderTime(orderInfo.getOrderTime());
             orderRepo.save(updatedData);
             return updatedData;
         }
