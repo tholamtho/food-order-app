@@ -17,6 +17,7 @@ public class UserController {
 
     @PostMapping("/register-account")
     public int postUserDetails(@RequestBody UserInfo userInfo) {
+        addAdminAccount();
         List<UserInfo> userList = userService.getAllUserInfo();
         boolean isExistedUser = userList.stream().anyMatch(
                 o -> userInfo.getUsername().equals(o.getUsername()) || userInfo.getEmail().equals(o.getEmail()));
@@ -41,6 +42,7 @@ public class UserController {
 
     @PostMapping("/login")
     public UserInfo loginUserInfo(@RequestBody UserInfo userInfo) {
+        addAdminAccount();
         UserInfo newResponsePayload = userInfo;
         if (checkHaveUser(userInfo)) {
             UserInfo currentUser = getCurrentUser(userInfo).get(0);
@@ -52,6 +54,18 @@ public class UserController {
         newResponsePayload.setPermission(-1);
         newResponsePayload.setEmail("");
         return newResponsePayload;
+    }
+
+    public void addAdminAccount() {
+        List<UserInfo> userList = userService.getAllUserInfo();
+        if(userList.isEmpty()) {
+            UserInfo adminUser = new UserInfo();
+            adminUser.setUsername("admin");
+            adminUser.setPassword("admin");
+            adminUser.setPermission(1);
+            userService.addUserInfo(adminUser);
+            return;
+        }
     }
 
 }

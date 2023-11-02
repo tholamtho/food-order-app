@@ -31,4 +31,7 @@ public class UserInfo {
 
     @Column(name="address")
     private String userAddress;
+
+    @Column(name="isBanned")
+    private boolean isBanned;
 }
