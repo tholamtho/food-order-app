@@ -64,10 +64,18 @@ export const UserInfor = (info) => {
   const handleSubmit = () => {
     const payloadData = {
       ...USER_DETAILS,
-      emai: userFormInstance.getFieldValue(changeInforInputName.email),
-      password: userFormInstance.getFieldValue(changeInforInputName.password),
-      phoneNo: userFormInstance.getFieldValue(changeInforInputName.phoneNo),
-      userAddress: userFormInstance.getFieldValue(changeInforInputName.address),
+      emai:
+        userFormInstance.getFieldValue(changeInforInputName.email) ??
+        USER_DETAILS.email,
+      password:
+        userFormInstance.getFieldValue(changeInforInputName.password) ??
+        USER_DETAILS.password,
+      phoneNo:
+        userFormInstance.getFieldValue(changeInforInputName.phoneNo) ??
+        USER_DETAILS.phoneNo,
+      userAddress:
+        userFormInstance.getFieldValue(changeInforInputName.address) ??
+        USER_DETAILS.userAddress,
     };
     //Submit form
     changeUserDetails(payloadData);
