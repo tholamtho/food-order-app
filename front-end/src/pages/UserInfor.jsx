@@ -13,15 +13,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { isEmpty } from 'lodash';
 import { EditOutlined, StarFilled } from '@ant-design/icons';
 import './UserInfor.scss';
-
-const fakeUserInfo = {
-  name: 'Another wibu',
-  email: 'a@example.com',
-  address: '',
-  phoneNo: '0123456789',
-  avatarLink:
-    'https://i.pinimg.com/564x/b6/74/44/b67444cabdb5aaadb6735e75df1bcc5c.jpg',
-};
+import { changeUserDetails } from '../api/userDetail';
 
 const changeInforInputName = {
   name: 'name',
@@ -32,13 +24,11 @@ const changeInforInputName = {
   password: 'password',
 };
 const firstColInput = [
-  changeInforInputName.name,
   changeInforInputName.phoneNo,
   changeInforInputName.address,
 ];
 const secondColInput = [
   changeInforInputName.email,
-  changeInforInputName.dateOfBirth,
   changeInforInputName.password,
 ];
 
@@ -46,7 +36,20 @@ export const UserInfor = (info) => {
   const { Meta } = Card;
   const [loading, setLoading] = useState(true);
   const [isOpenEditModal, setIsOpenEditModal] = useState(false);
-  const currentData = useRef(fakeUserInfo);
+  const USER_DETAILS = JSON.parse(localStorage.getItem('user_info'));
+
+  const [userFormInstance] = Form.useForm();
+
+  const currentUserInfo = {
+    name: USER_DETAILS.username,
+    email: USER_DETAILS.email,
+    address: USER_DETAILS.userAddress,
+    phoneNo: USER_DETAILS.phoneNo,
+    avatarLink:
+      'https://i.pinimg.com/564x/b6/74/44/b67444cabdb5aaadb6735e75df1bcc5c.jpg',
+  };
+
+  const currentData = useRef(currentUserInfo);
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
@@ -59,13 +62,20 @@ export const UserInfor = (info) => {
   };
 
   const handleSubmit = () => {
+    const payloadData = {
+      ...USER_DETAILS,
+      emai: userFormInstance.getFieldValue(changeInforInputName.email),
+      password: userFormInstance.getFieldValue(changeInforInputName.password),
+      phoneNo: userFormInstance.getFieldValue(changeInforInputName.phoneNo),
+      userAddress: userFormInstance.getFieldValue(changeInforInputName.address),
+    };
     //Submit form
+    changeUserDetails(payloadData);
     handleCloseEditModal();
   };
 
   const handleRenderForm = (inputFields, data) => {
     return inputFields.map((item) => {
-      console.log(Object.values(item));
       return (
         <Form.Item name={data[item]}>
           <Input placeholder={data[item]} />
@@ -156,7 +166,7 @@ export const UserInfor = (info) => {
             </Col>
           </Row>
           <Row className='change-infor-inputs'>
-            <Form>
+            <Form form={userFormInstance}>
               <Row>
                 <Col style={{ width: '10%' }} />
                 <Col style={{ width: '40%' }}>

@@ -28,7 +28,7 @@ public class UserController {
         return 1;
     }
 
-    private boolean checkHaveUser(UserInfo userInfo) {
+    private boolean isHaveUser(UserInfo userInfo) {
         List<UserInfo> userList = userService.getAllUserInfo();
         return userList.stream().anyMatch(
                 o -> userInfo.getUsername().equals(o.getUsername()) && userInfo.getPassword().equals(o.getPassword()));
@@ -44,9 +44,8 @@ public class UserController {
     public UserInfo loginUserInfo(@RequestBody UserInfo userInfo) {
         addAdminAccount();
         UserInfo newResponsePayload = userInfo;
-        if (checkHaveUser(userInfo)) {
+        if (isHaveUser(userInfo)) {
             UserInfo currentUser = getCurrentUser(userInfo).get(0);
-            currentUser.setPassword("************");
             return currentUser;
         }
         newResponsePayload.setUsername("");
@@ -68,4 +67,9 @@ public class UserController {
         }
     }
 
+    @PostMapping("/update-user")
+    public void updateUser(@RequestBody UserInfo userInfo) {
+            userService.updateUserInfo(userInfo);
+
+    }
 }
