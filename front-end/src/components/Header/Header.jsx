@@ -47,16 +47,23 @@ const nav__links = [
     isAdminHidden: true,
   },
   {
+    display: 'Quản lý người dùng',
+    path: `/user-management`,
+    isAdminOnly: true,
+  },
+  {
     display: 'Loggout',
     path: '/login',
     isLoggout: true,
   },
 ].filter((item) => {
-  if (
-    USER_DETAILS &&
-    USER_DETAILS.permission === USER_ROLE.ADMIN &&
-    item.isAdminHidden
-  ) {
+  if (USER_DETAILS && USER_DETAILS.permission === USER_ROLE.ADMIN) {
+    if (item.isAdminHidden) {
+      return false;
+    }
+    return true;
+  }
+  if (item.isAdminOnly) {
     return false;
   }
   if (
