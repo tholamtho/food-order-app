@@ -27,12 +27,12 @@ export const UserManageMent = () => {
 
   const tableColumns = [
     {
-      title: 'Tên người giao hàng',
+      title: 'Shipper Name',
       dataIndex: 'username',
       key: 'username',
     },
     {
-      title: 'Số điện thoại',
+      title: 'Phone number',
       dataIndex: 'phoneNo',
       key: 'phoneNo',
     },
@@ -42,7 +42,7 @@ export const UserManageMent = () => {
       key: 'email',
     },
     {
-      title: 'Số lần 1*',
+      title: 'Bad Rating Times',
       key: 'NGTimes',
       render: (_, record) => {
         return listOrder.filter(
@@ -52,7 +52,7 @@ export const UserManageMent = () => {
       },
     },
     {
-      title: 'Hành động',
+      title: 'Action',
       key: 'actions',
       render: (_, record) => (
         <Button onClick={() => handleBanningUser(record)}>

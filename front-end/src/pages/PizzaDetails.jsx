@@ -17,15 +17,15 @@ import ProductCard from '../components/UI/product-card/ProductCard';
 import { MultipleFooter } from '../components/Footer/MultipleFooter';
 
 const ExtraIngredients = {
-  MUSHROOMS: 'Nấm',
-  ONION: 'Hành',
-  PEPPER: 'Tiêu',
-  PINAPPLE: 'Dứa',
-  TUNA: 'Cá ngừ',
-  MEAT: 'Thịt',
-  CHEESE: 'Phô mai',
-  HOTSAUCE: 'Xúc xích',
-  CORN: 'Ngô',
+  MUSHROOMS: 'Mushrooms',
+  ONION: 'Onion',
+  PEPPER: 'Pepper',
+  PINAPPLE: 'Pinapple',
+  TUNA: 'Tuna',
+  MEAT: 'Meat',
+  CHEESE: 'Cheese',
+  HOTSAUCE: 'Hotsauce',
+  CORN: 'Corn',
 };
 
 const PizzaDetails = () => {

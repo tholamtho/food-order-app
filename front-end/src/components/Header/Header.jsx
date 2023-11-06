@@ -20,35 +20,31 @@ const USER_DETAILS = JSON.parse(localStorage.getItem('user_info'));
 
 const nav__links = [
   {
-    display: 'Trang chủ',
+    display: 'Home Page',
     path: '/home',
   },
   {
-    display: 'Đồ ăn',
+    display: 'Products List',
     path: '/pizzas',
   },
   {
-    display: 'Giỏ hàng',
+    display: 'Cart',
     path: '/cart',
     isAdminHidden: true,
     isShipperHidden: true,
   },
   {
-    display: 'Liên hệ',
-    path: '/contact',
-  },
-  {
-    display: 'Thông tin người dùng',
+    display: 'User Information',
     path: `/user-infor/${USER_DETAILS?.username ?? 1}`,
   },
   {
-    display: 'Danh sách đơn hàng',
+    display: 'Order List',
     path: `/grading/${USER_DETAILS?.username ?? ''}`,
     isBannedAvoid: true,
     isAdminHidden: true,
   },
   {
-    display: 'Quản lý người dùng',
+    display: 'Shipper Management',
     path: `/user-management`,
     isAdminOnly: true,
   },
@@ -115,7 +111,7 @@ const Header = () => {
         <div className='nav__wrapper d-flex align-items-center justify-content-between'>
           <div className='logo' onClick={() => navigate('/home')}>
             <img src={logo} alt='logo' />
-            <h5>Món ngon đang chờ</h5>
+            <h5>Delicious foods are waiting</h5>
           </div>
           {/* ======= menu ======= */}
           <div className='navigation' ref={menuRef} onClick={toggleMenu}>
@@ -148,7 +144,7 @@ const Header = () => {
                       item.isBannedAvoid
                     ) {
                       alert(
-                        'Bạn đã bị cấm nhận đơn hàng. Vui lòng liên hệ với người quản lý để xử lý. Trân trọng!'
+                        'You were banned due to bad reviews. Please contact to administrator for more details. Regard!'
                       );
                       window.location.pathname = '/home';
                     }

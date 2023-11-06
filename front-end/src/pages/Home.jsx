@@ -16,11 +16,9 @@ const Home = () => {
           <Row>
             <Col lg='6' md='6'>
               <div className='hero__content'>
-                <h5 className='mb-3'>
-                  Đặt thàng đơn giản & Giao hàng nhanh chóng
-                </h5>
+                <h5 className='mb-3'>Simple Ordering & Fast Delivering</h5>
                 <h1 className='mb-4 hero__title'>
-                  <span>Tận hưởng</span> món ăn yêu thích của bạn
+                  <span>Enjoy</span> your favorite foods
                 </h1>
 
                 <button className='order__btn d-flex align-items-center justify-content-between '>

@@ -47,8 +47,8 @@ const Pizzas = () => {
             <ReactPaginate
               pageCount={pageCount}
               onPageChange={changePage}
-              previousLabel={'Trước'}
-              nextLabel={'Sau'}
+              previousLabel={'Previous'}
+              nextLabel={'Next'}
               containerClassName='paginationBttns'
             />
           </div>
