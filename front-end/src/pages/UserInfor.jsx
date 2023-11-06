@@ -44,6 +44,7 @@ export const UserInfor = (info) => {
   const USER_DETAILS = JSON.parse(localStorage.getItem('user_info'));
   const [currentOrders, setCurrentOrders] = useState([]);
 
+  const [passwordVisible, setPasswordVisible] = useState(false);
   const [userFormInstance] = Form.useForm();
 
   const currentUserInfo = {
@@ -92,7 +93,16 @@ export const UserInfor = (info) => {
     return inputFields.map((item) => {
       return (
         <Form.Item name={data[item]}>
-          <Input placeholder={data[item]} />
+          {item !== changeInforInputName.password ? (
+            <Input placeholder={data[item]} />
+          ) : (
+            <Input.Password
+              visibilityToggle={{
+                visible: passwordVisible,
+                onVisibleChange: setPasswordVisible,
+              }}
+            />
+          )}
         </Form.Item>
       );
     });
@@ -137,37 +147,37 @@ export const UserInfor = (info) => {
 
   const customersColumns = [
     {
-      title: 'Tên người giao hàng',
+      title: 'Shipper Name',
       dataIndex: 'shipperName',
       key: 'shipperName',
     },
     {
-      title: 'Mã vận đơn',
+      title: 'Order ID',
       dataIndex: 'orderID',
       key: 'orderID',
     },
     {
-      title: 'Trạng thái giao hàng',
+      title: 'Delivery Status',
       key: 'Status',
       dataIndex: 'orderStatus',
     },
     {
-      title: 'Đánh giá',
+      title: 'Grading',
       key: 'oderRating',
       dataIndex: 'oderRating',
     },
     {
-      title: 'Thời gian nhận đơn',
+      title: 'Ordered Time',
       dataIndex: 'orderTime',
       key: 'orderTime',
     },
     {
-      title: 'Thời gian giao hàng',
+      title: 'Deliver Time',
       dataIndex: 'deliverTime',
       key: 'deliverTime',
     },
     {
-      title: 'Tổng giá trị',
+      title: 'Total Cost',
       dataIndex: 'totalCost',
       key: 'totalCost',
     },

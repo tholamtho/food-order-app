@@ -41,10 +41,12 @@ const Cart = () => {
           <Row>
             <Col lg='12'>
               {cartItems.length === 0 ? (
-                <h5 className='text-center'>Giỏ hàng trống</h5>
+                <h5 className='text-center'>
+                  There is nothing here! Order something.
+                </h5>
               ) : (
                 <>
-                  <h5 className='mb-5'>Giỏ hàng</h5>
+                  <h5 className='mb-5'>Cart</h5>
                   <table className='table table-borderless mb-5 align-middle'>
                     <tbody>
                       {cartItems.map((item) => (
@@ -57,16 +59,16 @@ const Cart = () => {
 
               <div className='mt-4'>
                 <h6>
-                  Tổng cộng:
+                  Total:
                   <span className='cart__subtotal'>{totalAmount} VND</span>
                 </h6>
-                <p>Ship và phụ phí</p>
+                <p>Fee:</p>
                 <div className='cart__page-btn'>
                   <button className='addTOCart__btn me-4'>
-                    <Link to='/pizzas'>Tiếp tục mua sắm</Link>
+                    <Link to='/pizzas'>Continue Shopping!</Link>
                   </button>
                   <button className='addTOCart__btn' onClick={handleCheckout}>
-                    <Link to='/checkout'>Thanh toán</Link>
+                    <Link to='/checkout'>Checkout now</Link>
                   </button>
                 </div>
               </div>

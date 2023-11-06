@@ -51,7 +51,7 @@ export const GradingOrder = () => {
     setRating(0);
     setRatingOrder({});
     currentComment.current = '';
-    alert('Đã Đánh giá đơn hàng thành công. Cảm ơn quý khách');
+    alert('Thanks for your grading order. See you in next orders!');
     window.location.reload();
   };
 
@@ -81,45 +81,45 @@ export const GradingOrder = () => {
 
   const shipperColumns = [
     {
-      title: 'Tên người đặt hàng',
+      title: 'Customer name',
       dataIndex: 'customersName',
       key: 'customersName',
     },
     {
-      title: 'Địa chỉ',
+      title: 'Customer Adress',
       dataIndex: 'customersAddress',
       key: 'customersAddress',
     },
     {
-      title: 'Số điện thoại',
+      title: 'Customer PhoneNo',
       dataIndex: 'customersPhoneNo',
       key: 'customersPhoneNo',
     },
     {
-      title: 'Mã vận đơn',
+      title: 'Order ID',
       dataIndex: 'orderID',
       key: 'orderID',
     },
     {
-      title: 'Trạng thái giao hàng',
+      title: 'Order status',
       key: 'Status',
       render: (_, record) => {
         if (record.orderStatus === ORDER_DETAIL_STATUS.Pending) {
           return (
             <Button onClick={() => handleShippingSuccess(record)}>
-              Đã giao hàng
+              Delivered
             </Button>
           );
         }
       },
     },
     {
-      title: 'Thời gian nhận đơn',
+      title: 'Order Time',
       dataIndex: 'orderTime',
       key: 'orderTime',
     },
     {
-      title: 'Thời gian giao hàng',
+      title: 'Delivery time',
       dataIndex: 'deliverTime',
       key: 'deliverTime',
     },
@@ -127,27 +127,27 @@ export const GradingOrder = () => {
 
   const customersColumns = [
     {
-      title: 'Tên người giao hàng',
+      title: 'Shipper name',
       dataIndex: 'shipperName',
       key: 'shipperName',
     },
     {
-      title: 'Mã vận đơn',
+      title: 'Order ID',
       dataIndex: 'orderID',
       key: 'orderID',
     },
     {
-      title: 'Trạng thái giao hàng',
+      title: 'Order Status',
       key: 'Status',
       dataIndex: 'orderStatus',
     },
     {
-      title: 'Đánh giá',
+      title: 'Rated Order',
       key: 'oderRating',
       dataIndex: 'oderRating',
     },
     {
-      title: 'Đánh giá',
+      title: 'Order Rating',
       key: 'Final',
       render: (_, record) => {
         if (
@@ -161,19 +161,19 @@ export const GradingOrder = () => {
                 setRatingOrder(record);
               }}
             >
-              Đánh giá
+              Rating Order
             </Button>
           );
         }
       },
     },
     {
-      title: 'Thời gian nhận đơn',
+      title: 'Order Time',
       dataIndex: 'orderTime',
       key: 'orderTime',
     },
     {
-      title: 'Thời gian giao hàng',
+      title: 'Delivery Time',
       dataIndex: 'deliverTime',
       key: 'deliverTime',
     },
@@ -194,7 +194,7 @@ export const GradingOrder = () => {
         onCancel={() => setOpenRating(false)}
       >
         <Row className='order-id-detail'>
-          <div className='order-number'>Đơn hàng số: {id}</div>
+          <div className='order-number'>Customer's name: {id}</div>
         </Row>
         <Row className='rating-header'>
           <Col className='header-blank-col-1'></Col>
@@ -220,7 +220,7 @@ export const GradingOrder = () => {
           <Col className='comment-input-col'>
             <Input
               className='comment-input'
-              placeholder='Để lại bình luận tại đây...'
+              placeholder='Leave your comment here...'
               onChange={(e) => {
                 currentComment.current = e.target.value;
               }}
@@ -231,7 +231,7 @@ export const GradingOrder = () => {
                 type='primary'
                 onClick={handleSubmitRating}
               >
-                Đánh giá
+                Rating order
               </Button>
             </Row>
           </Col>
@@ -240,7 +240,7 @@ export const GradingOrder = () => {
       </Modal>
       {USER_DETAILS.permission === USER_ROLE.SHIPPER && (
         <div>
-          <h3>Người dùng đánh giá</h3>
+          <h3>User rating</h3>
           {currentOrders
             .filter((item) => item.orderStatus === ORDER_DETAIL_STATUS.Complete)
             .map((record) => {

@@ -6,10 +6,13 @@ export const Login = () => {
   const [isOpenRegister, setOpenRegister] = useState(false);
   const [loginFormInstance] = Form.useForm();
   const [registerFormInstance] = Form.useForm();
+  const [passwordVisible, setPasswordVisible] = useState(false);
+  const [createPasswordVisible, setCreatePasswordVisible] = useState(false);
+  const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
 
   const userRoleOptions = [
-    { label: 'Khách hàng', value: 2 },
-    { label: 'Nhân viên giao hàng', value: 3 },
+    { label: 'A customer', value: 2 },
+    { label: 'A delivery man', value: 3 },
   ];
 
   const handleLoginSubmit = async () => {
@@ -26,7 +29,7 @@ export const Login = () => {
       localStorage.setItem('user_info', JSON.stringify(loginData));
       window.location.pathname = '/home';
     } else {
-      alert('Thông tin không đúng hoặc sai mật khẩu. Vui lòng thử lại');
+      alert('The information is not correct. Please try again!');
     }
   };
   const handleRegisterSubmit = async () => {
@@ -75,11 +78,11 @@ export const Login = () => {
         </Col>
         <Col className='form-col'>
           <div className='input-fields'>
-            <h2>Đăng nhập</h2>
+            <h2>Login</h2>
             <Form form={loginFormInstance}>
               <Row>
                 <Col className='label-input'>
-                  <span>Tên đăng nhập</span>
+                  <span>Username</span>
                 </Col>
                 <Col className='input-login'>
                   <Form.Item
@@ -97,7 +100,7 @@ export const Login = () => {
               </Row>
               <Row>
                 <Col className='label-input'>
-                  <span>Mật khẩu</span>
+                  <span>Password</span>
                 </Col>
                 <Col className='input-login'>
                   <Form.Item
@@ -109,18 +112,23 @@ export const Login = () => {
                       },
                     ]}
                   >
-                    <Input type='password' />
+                    <Input.Password
+                      visibilityToggle={{
+                        visible: passwordVisible,
+                        onVisibleChange: setPasswordVisible,
+                      }}
+                    />
                   </Form.Item>
                 </Col>
               </Row>
               <Row>
                 <Button onClick={handleLoginSubmit} type='primary'>
-                  Đăng nhập
+                  Login
                 </Button>
               </Row>
               <Row className='regis-btn'>
                 <Button onClick={() => setOpenRegister((current) => !current)}>
-                  Chưa có account? Đăng kí
+                  Not have account? Register now.
                 </Button>
               </Row>
             </Form>
@@ -184,7 +192,12 @@ export const Login = () => {
                 },
               ]}
             >
-              <Input type='password' />
+              <Input.Password
+                visibilityToggle={{
+                  visible: createPasswordVisible,
+                  onVisibleChange: setCreatePasswordVisible,
+                }}
+              />
             </Form.Item>
             <Form.Item
               name={'register-confirm-pwd'}
@@ -196,7 +209,12 @@ export const Login = () => {
                 },
               ]}
             >
-              <Input type='password' />
+              <Input.Password
+                visibilityToggle={{
+                  visible: confirmPasswordVisible,
+                  onVisibleChange: setConfirmPasswordVisible,
+                }}
+              />
             </Form.Item>
             <Form.Item
               name={'user-address'}
@@ -212,7 +230,7 @@ export const Login = () => {
             </Form.Item>
             <Form.Item
               name={'role-select'}
-              label={'Vai trò'}
+              label={'You are'}
               rules={[
                 {
                   required: true,
